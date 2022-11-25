@@ -1,4 +1,4 @@
-package jp.egslava.subgrow.android.sdk.mylibrary
+package ru.egslava.subgrow.android.sdk.ui_debugger
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("jp.subgrow.android.sdk.mylibrary.test", appContext.packageName)
+        assertEquals("ru.egslava.subgrow.android.sdk.ui_debugger", appContext.packageName)
     }
 }

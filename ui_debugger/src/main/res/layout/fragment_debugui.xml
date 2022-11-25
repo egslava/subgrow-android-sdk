@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".platform.ui.debug_ui.debug_ui.OfferFragment"
+    android:fillViewport="true"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_16"
+        >
+
+        <Button
+            android:id="@+id/btn_nav_to_offer_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Offer Screen 1" />
+
+        <Button
+            android:id="@+id/btn_nav_to_offer_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Offer Screen 2" />
+
+        <LinearLayout
+            android:id="@+id/linear_json_offers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+
+    </LinearLayout>
+
+</ScrollView>
