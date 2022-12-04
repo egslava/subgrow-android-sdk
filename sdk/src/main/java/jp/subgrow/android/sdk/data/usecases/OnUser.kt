@@ -2,13 +2,9 @@ package jp.subgrow.android.sdk.data.usecases
 
 import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.util.Log
 import jp.subgrow.android.sdk.Temp.OMR_TAG
-import kotlinx.coroutines.*
-import jp.subgrow.android.sdk.data.usecases.pushes.PushesUseCase
 import jp.subgrow.android.sdk.data.usecases.subscriptions.SubsUseCase
-import jp.subgrow.android.sdk.data.usecases.subscriptions.SubscriptionsEffect
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 
 

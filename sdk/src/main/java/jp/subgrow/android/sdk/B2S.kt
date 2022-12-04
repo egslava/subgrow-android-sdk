@@ -5,7 +5,6 @@ import android.app.Application
 import jp.subgrow.android.sdk.data.repository.DeviceRepo
 import jp.subgrow.android.sdk.data.repository.PlayBillingRepo
 import jp.subgrow.android.sdk.data.usecases.OnUser
-import jp.subgrow.android.sdk.data.usecases.offers.OfferUseCase.onUserHitBgPush
 import jp.subgrow.android.sdk.data.usecases.subscriptions.SubsUseCase
 import jp.subgrow.android.sdk.platform.ui.pushes.onUserHitBgPush
 import java.util.*

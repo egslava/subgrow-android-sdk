@@ -7,7 +7,6 @@ import jp.subgrow.android.sdk.platform.datasource.OfferScreenRequest
 import jp.subgrow.android.sdk.platform.datasource.PostTokenRequest
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logOfferScreen
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logToken2
-import jp.subgrow.android.sdk.platform.datasource.rest.Token2Parser
 import jp.subgrow.android.sdk.platform.datasource.rest.rest
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 

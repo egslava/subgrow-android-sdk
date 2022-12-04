@@ -4,12 +4,22 @@ import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
-import kotlinx.coroutines.flow.*
-import jp.subgrow.android.sdk.data.entities.Offer
-import jp.subgrow.android.sdk.data.usecases.subscriptions.Converter
-import kotlinx.coroutines.flow.MutableStateFlow as State
 import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSource
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelValidation
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow as State
+
+
+data class Offer(
+    val productDetails: ProductDetails,
+    val tag: String,
+    val price: ProductDetails.PricingPhase,
+
+    /** Token for buying */
+    val token: String,
+    val duration_millis: Long = 0,
+    val purchase_time: Long? = null,
+)
 
 object PlayBillingRepo {
     var _is_inited = false
@@ -69,24 +79,23 @@ object PlayBillingRepo {
             return null
 
         this.products = products
-        val offers =
-            Converter.product_details_to_offers(
-                products)
+        val offers: List<Offer> = products.map { product: ProductDetails ->
+            product.subscriptionOfferDetails!!
+                .map { offer ->
+                    val is_purchased = purchases.find {
+                        product.productId in it.products
+                    }
 
-        if (purchases.isNotEmpty()) {
-            for (offer in offers) {
-                val purchase = purchases.find {
-                    offer.productDetails
-                        ?.productId in it.products
+                    Offer(
+                        product,
+                        offer.offerTags.joinToString(),
+                        price = offer.pricingPhases.pricingPhaseList[0],
+                        token = offer.offerToken,
+                        purchase_time = is_purchased?.purchaseTime,
+                    )
                 }
+        }.flatten()
 
-                offer.purchase_time =
-                    purchase?.purchaseTime ?: 0
-                offer.disabled = true
-//                offer.buttonText = "Waiting..."
-                offer.purchase_time
-            }
-        }
         return offers
     }
 }

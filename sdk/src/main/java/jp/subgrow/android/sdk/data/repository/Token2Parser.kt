@@ -1,4 +1,4 @@
-package jp.subgrow.android.sdk.platform.datasource.rest
+package jp.subgrow.android.sdk.data.repository
 
 import android.graphics.Color
 import org.json.JSONObject

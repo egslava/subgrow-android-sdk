@@ -28,4 +28,5 @@ data class OfferParams(
     val background_image_preview: String = "",
     val push_notification_text: String = "",
     val footer: String = "",
+    val tag: String = "",  // playstore tag
 ): Parcelable

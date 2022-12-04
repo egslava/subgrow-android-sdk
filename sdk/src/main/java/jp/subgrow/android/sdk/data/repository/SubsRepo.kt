@@ -1,7 +1,6 @@
 package jp.subgrow.android.sdk.data.repository
 
 import kotlinx.coroutines.flow.*
-import jp.subgrow.android.sdk.data.entities.Offer
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 
 object SubsRepo {

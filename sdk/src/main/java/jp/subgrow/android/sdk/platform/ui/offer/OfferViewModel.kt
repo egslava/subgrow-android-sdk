@@ -4,13 +4,12 @@ import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.*
 import jp.subgrow.android.sdk.B2S
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
-import jp.subgrow.android.sdk.data.entities.Offer
-import jp.subgrow.android.sdk.data.placeholder.OffersPlaceholder.product_id_to_tag
+import jp.subgrow.android.sdk.data.repository.Offer
 import jp.subgrow.android.sdk.data.repository.PlayBillingRepo
 import jp.subgrow.android.sdk.data.usecases.OnUser
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
 import java.util.*
 
 class OfferViewModel(
@@ -39,9 +38,7 @@ class OfferViewModel(
         offers: List<Offer>,
     ): Boolean {
         return offers.find {
-            (it.tag == product_id_to_tag(
-                offer.productId)) &&
-            (it.purchase_time > 0)
+            it.tag == offer.tag && it.purchase_time != null
         } != null
     }
 

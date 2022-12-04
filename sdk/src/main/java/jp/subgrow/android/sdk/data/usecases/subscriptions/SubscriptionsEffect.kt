@@ -5,5 +5,5 @@ import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 sealed class SubscriptionsEffect {
     class GoToOffer(
         val offer: OfferParams
-    ) : PushesEffect()
+    ) : SubscriptionsEffect()
 }
