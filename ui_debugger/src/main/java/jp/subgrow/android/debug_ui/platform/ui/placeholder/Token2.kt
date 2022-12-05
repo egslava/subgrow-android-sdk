@@ -1,7 +1,7 @@
 package jp.subgrow.android.sdk.data.placeholder
 
 import android.graphics.Color
-import jp.subgrow.android.sdk.platform.datasource.rest.Token2Parser
+import jp.subgrow.android.sdk.data.repository.Token2Parser
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 
 val product_id = "12345"
