@@ -19,8 +19,8 @@ jobs:
           chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
           ./.github/workflows/scripts/tutorial_build_release.sh
 
-          chmod +x ./.github/workflows/scripts/build_release.sh
-          ./.github/workflows/scripts/build_release.sh
+#          chmod +x ./.github/workflows/scripts/build_release.sh
+#          ./.github/workflows/scripts/build_release.sh
         env:
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
           SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
@@ -35,9 +35,9 @@ jobs:
           automatic_release_tag: "v0.0.${{github.run_id}}"
           prerelease: false
           files: |
-            ./app/build/outputs/bundle/release/app-release.aab
-            ./app/build/outputs/apk/release/app-release.apk
-            ./app/build/outputs/apk/debug/app-debug.apk
+            ./app/build/outputs/bundle/release/tutorial-release.aab
+            ./app/build/outputs/apk/release/tutorial-release.apk
+            ./app/build/outputs/apk/debug/tutorial-debug.apk
 
 
       - name: "publish to PlayStore"
