@@ -23,7 +23,7 @@ android {
         release_config {
             keyAlias "key0"
             keyPassword "12345678"
-            storeFile file("../../subgrow-android-example-secrets/keystore")
+            storeFile file("./secrets/keystore")
             storePassword "12345678"
         }
         debug_config {
@@ -67,8 +67,13 @@ android {
     }
 }
 
+def subgrow_sdk_maven_repo = System.getenv().get('subgrow_sdk_maven_repo')
 dependencies {
-
+    if (subgrow_sdk_maven_repo == null) {
+        implementation project(':sdk')
+    } else {
+        implementation subgrow_sdk_maven_repo
+    }
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -85,5 +90,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-    implementation project(':sdk')
 }

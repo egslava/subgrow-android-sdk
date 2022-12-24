@@ -1,4 +1,4 @@
-name: "pre-release"
+name: "release"
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - "master"
 
 jobs:
-  pre-release:
-    name: "Pre Release"
+  release:
+    name: "Release"
     runs-on: "ubuntu-latest"
 
     steps:
@@ -16,6 +16,9 @@ jobs:
 
       - name: "build"
         run: |
+          chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
+          ./.github/workflows/scripts/tutorial_build_release.sh
+
           chmod +x ./.github/workflows/scripts/build_release.sh
           ./.github/workflows/scripts/build_release.sh
         env:
@@ -29,9 +32,8 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "v0.0.${{github.run_number}}"
-          prerelease: true
-          title: "Development Build"
+          automatic_release_tag: "v0.0.${{github.run_id}}"
+          prerelease: false
           files: |
             ./app/build/outputs/bundle/release/app-release.aab
             ./app/build/outputs/apk/release/app-release.apk
