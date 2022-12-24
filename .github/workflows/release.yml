@@ -14,17 +14,17 @@ jobs:
       - name: "checkout"
         uses: actions/checkout@v3
 
-      - name: "local tests"
+      - name: "building"
         env:
           SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
         run: |
-          chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
-          ./.github/workflows/scripts/tutorial_build_release.sh
+          chmod +x .github/workflows/scripts/**
+          ./.github/workflows/scripts/_1_build.sh
 
-      - name: "tag for sdk"
+      - name: "tag for jitpack"
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -33,19 +33,16 @@ jobs:
 
       - name: "jitpack tests"
         run: |
-          chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
-          ./.github/workflows/scripts/tutorial_build_release.sh
-
-#          chmod +x ./.github/workflows/scripts/build_release.sh
-#          ./.github/workflows/scripts/build_release.sh
+          ./.github/workflows/scripts/_2_jitpack.sh
         env:
+          subgrow_sdk_maven_repo: "com.github.${{github.repository.owner}}:${{github.event.repository.name }}:v0.0.${{github.run_id}}.prerelease"
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
           SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
 
-      - name: "github-releases"
+      - name: "github releases (tested)"
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -53,14 +50,19 @@ jobs:
           prerelease: false
           files: |
             ./app/build/outputs/bundle/release/tutorial-release.aab
+            ./app/build/outputs/bundle/release/tutorial-debug.aab
             ./app/build/outputs/apk/release/tutorial-release.apk
             ./app/build/outputs/apk/debug/tutorial-debug.apk
+            ./app/build/outputs/bundle/debug/demo-release.aab
+            ./app/build/outputs/bundle/debug/demo-debug.aab
+            ./app/build/outputs/apk/debug/demo-debug.apk
+            ./app/build/outputs/apk/debug/demo-release.apk
 
 #
 #      - name: "publish to PlayStore"
 #        run: |
-#          chmod +x ./.github/workflows/scripts/build_publish.sh
-#          ./.github/workflows/scripts/build_publish.sh
+#          chmod +x ./.github/workflows/scripts/_3_publish.sh
+#          ./.github/workflows/scripts/_3_publish.sh
 #        env:
 #          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
 #          SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
