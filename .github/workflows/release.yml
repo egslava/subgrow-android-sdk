@@ -14,7 +14,19 @@ jobs:
       - name: "checkout"
         uses: actions/checkout@v3
 
-      - name: "build"
+      - name: "local tests"
+        run: |
+          chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
+          ./.github/workflows/scripts/tutorial_build_release.sh
+
+      - name: "tag for sdk"
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v0.0.${{github.run_id}}.prerelease"
+          prerelease: false
+
+      - name: "jitpack tests"
         run: |
           chmod +x ./.github/workflows/scripts/tutorial_build_release.sh
           ./.github/workflows/scripts/tutorial_build_release.sh
