@@ -7,9 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-import jp.subgrow.android.sdk.B2S
-import ru.egslava.subgrowandroiddemo.R
-import ru.egslava.subgrowandroiddemo.databinding.ActivityMainBinding
+import jp.subgrow.android.sdk.Subgrow
+import jp.subgrow.ui_debugger.R
+import jp.subgrow.ui_debugger.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        B2S.gotPushViaIntent(this)
+        Subgrow.gotPushViaIntent(this)
         firebaseAnalytics = Firebase.analytics
 
         binding =

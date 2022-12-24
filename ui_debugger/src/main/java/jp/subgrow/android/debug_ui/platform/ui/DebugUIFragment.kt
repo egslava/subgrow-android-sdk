@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import jp.subgrow.android.sdk.data.placeholder.Token2
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
-import ru.egslava.subgrowandroiddemo.R
-import ru.egslava.subgrowandroiddemo.databinding.FragmentDebuguiBinding
+import jp.subgrow.ui_debugger.R
+import jp.subgrow.ui_debugger.databinding.FragmentDebuguiBinding
 
 class DebugUIFragment : Fragment() {
 

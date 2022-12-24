@@ -1,10 +1,10 @@
 package jp.subgrow.android.sdk.data.repository
 
-import jp.subgrow.android.sdk.B2S
+import jp.subgrow.android.sdk.Subgrow
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
-import jp.subgrow.android.sdk.platform.datasource.OfferScreenRequest
-import jp.subgrow.android.sdk.platform.datasource.PostTokenRequest
+import jp.subgrow.android.sdk.platform.datasource.rest.OfferScreenRequest
+import jp.subgrow.android.sdk.platform.datasource.rest.PostTokenRequest
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logOfferScreen
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logToken2
 import jp.subgrow.android.sdk.platform.datasource.rest.rest
@@ -26,7 +26,7 @@ object RestRepo {
             invalidate.filter { it }
         ) { _1, _2 -> _1 }
             .map { (uid, fcm_token) ->
-                _post_token(uid, fcm_token, B2S.lang)
+                _post_token(uid, fcm_token, Subgrow.lang)
 
                 _post_offer_screen(
                     sdk_key = sdk_key,

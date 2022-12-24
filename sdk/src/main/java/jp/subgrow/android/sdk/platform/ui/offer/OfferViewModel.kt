@@ -1,13 +1,12 @@
-package jp.subgrow.android.sdk.platform.ui.debug_ui.debug_ui
+package jp.subgrow.android.sdk.platform.ui.offer
 
 import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.*
-import jp.subgrow.android.sdk.B2S
+import jp.subgrow.android.sdk.Subgrow
 import jp.subgrow.android.sdk.data.repository.Offer
 import jp.subgrow.android.sdk.data.repository.PlayBillingRepo
 import jp.subgrow.android.sdk.data.usecases.OnUser
-import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import java.util.*
@@ -25,7 +24,7 @@ class OfferViewModel(
         MutableLiveData<OfferParams?>(null)
 
     init {
-        OnUser.openedOfferScreen(app, B2S.lang ?: Locale.getDefault().language)
+        OnUser.openedOfferScreen(app, Subgrow.lang ?: Locale.getDefault().language)
         should_close = combine(
             offer_params.asFlow().filterNotNull(),
             PlayBillingRepo.subscriptions.filterNotNull(),

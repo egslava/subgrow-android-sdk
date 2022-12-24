@@ -9,11 +9,11 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "ru.egslava.subgrowandroiddemo"
+        applicationId "jp.subgrow.ui_debugger"
         minSdk 28
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode subgrow_version_code
+        versionName subgrow_version_name
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

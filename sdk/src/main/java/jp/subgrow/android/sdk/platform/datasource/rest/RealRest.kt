@@ -1,9 +1,7 @@
-package jp.subgrow.android.sdk.platform.datasource
+package jp.subgrow.android.sdk.platform.datasource.rest
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
-import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -13,7 +11,7 @@ import retrofit2.http.POST
 data class PostTokenRequest(
     val androidId: String,
     val fcmToken: String,
-    val lang: String,  // 2 letter code, ru/en/jp
+    val lang: String,  // 2 letter code, en/jp
 )
 
 @Serializable
@@ -24,9 +22,8 @@ data class OfferScreenRequest(
 
 // Base url:
 interface Rest {
-    // И в http headers в accept-language нужно
-    // отправлять язык юзера. Я беру только первые 2
-    // символа, напр. “en”.
+    // You have to put 'accept-language' in http headers
+    // I'm taking first 2 symbols, i.e. "en".
     @POST("app-user/token/android")
     suspend fun token2(
         @Body body: PostTokenRequest,

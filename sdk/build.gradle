@@ -53,7 +53,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId 'jp.subgrow.android'
                 artifactId 'sdk'
-                version '0.2.0'
+                version subgrow_version_name
                 // version = new SimpleDateFormat('yyyyMMddHHmm').format(new Date())
                 from components.release
             }

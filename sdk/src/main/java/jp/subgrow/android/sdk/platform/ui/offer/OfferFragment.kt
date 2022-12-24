@@ -1,4 +1,4 @@
-package jp.subgrow.android.sdk.platform.ui.debug_ui.debug_ui
+package jp.subgrow.android.sdk.platform.ui.offer
 
 import android.graphics.Color
 import android.os.Bundle
@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import jp.subgrow.android.databinding.FragmentOfferBinding
-import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 
 class OfferFragment : Fragment() {
 

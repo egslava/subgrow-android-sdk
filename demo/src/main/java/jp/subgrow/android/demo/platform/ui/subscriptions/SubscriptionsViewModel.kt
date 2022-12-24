@@ -1,0 +1,65 @@
+package jp.subgrow.android.demo.platform.ui.subscriptions
+
+import OfferDescription
+import android.app.Activity
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import jp.subgrow.android.demo.platform.LiveEvent
+import jp.subgrow.android.demo.platform.ui.subscriptions.Converter.toOfferDescriptions
+import jp.subgrow.android.demo.platform.ui.subscriptions.Converter.toSubscriptionItems
+import jp.subgrow.android.demo.platform.utils.Ticker.ticker
+import jp.subgrow.android.sdk.Subgrow
+import jp.subgrow.android.sdk.data.repository.Offer
+import jp.subgrow.android.sdk.data.usecases.subscriptions.SubscriptionsEffect
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.launch
+
+class HomeViewModel(
+    app: Application,
+) : AndroidViewModel(app) {
+
+    val subs_items: LiveData<List<SubscriptionItem>>
+    val effects = LiveEvent<SubscriptionsEffect>()
+
+    val uid = Subgrow.uid.asLiveData()
+
+    fun buy(activity: Activity, token: String) {
+        Subgrow.buy(activity, token)
+    }
+
+    init {
+        Subgrow.loadPlaySubscriptions(app,
+            "7ea57fec-ed9d-4fb9-8f24-51947fe25066",
+            arrayOf(
+                "oneweek",
+                "onemonth",
+                "threemonth",
+                "sixmonth",
+                "oneyear",
+            ))
+
+        viewModelScope.launch {
+            Subgrow.onOfferReceived
+                .collect(effects::postValue)
+        }
+
+        subs_items = combine(
+            Subgrow.playSubscriptions,
+            viewModelScope.ticker(500),
+        ) { subscriptions: List<Offer>, _ ->
+            subscriptions
+                .toOfferDescriptions()
+                .toSubscriptionItems()
+        }.asLiveData()
+    }
+
+
+    fun onBtnCrash() {
+        throw RuntimeException("""
+            A user decided to crash the app
+        """.trimIndent())
+    }
+}

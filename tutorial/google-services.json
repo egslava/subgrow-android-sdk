@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "192138977893",
+    "project_id": "subgrow-android-example",
+    "storage_bucket": "subgrow-android-example.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192138977893:android:0c26c2ea513bffbd82dc8c",
+        "android_client_info": {
+          "package_name": "jp.subgrow.android.sdk.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkChTSwZQ0zpMjnWoqiG9OlAIHdlsru2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192138977893:android:56a8d76ae90e7ce382dc8c",
+        "android_client_info": {
+          "package_name": "jp.subgrow.android.sdk.tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkChTSwZQ0zpMjnWoqiG9OlAIHdlsru2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192138977893:android:db176ccf1bc5c13c82dc8c",
+        "android_client_info": {
+          "package_name": "ru.egslava.subgrow.android.sdk.example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkChTSwZQ0zpMjnWoqiG9OlAIHdlsru2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192138977893-8ii4mjglivitufmtnc6sq9o70ga38ar9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

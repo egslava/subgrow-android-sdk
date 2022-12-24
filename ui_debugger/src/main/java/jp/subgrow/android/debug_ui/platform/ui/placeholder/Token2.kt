@@ -6,16 +6,17 @@ import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 
 val product_id = "12345"
 val promotion_offer_id =
-    "id оффера, задается в app store connect. В iOS передается при оплате. Потом записывается в чеке и попадает к нам."
+    "An offer id, should be set in app store connect. It's sent to iOS within payment. Afterwords it goes to the bill and being sent to us."
 val pushNotificationText = "You've got a personal offer!"
 val bg_color = "#111111"
 val bg_img_url = "https://static.vecteezy.com/system/resources/previews/002/402/683/original/night-starry-sky-and-pink-clouds-sunrise-free-vector.jpg"
 val bg_image_base64_preview =
-    "превью, шириной в несколько пикселей. Показывается пока полноразмерное изображение из url не загрузилось"
+    "several-pixels wide image preview. Being shown while the main image from the url has not been loaded"
 
 val img_url = "https://static.vecteezy.com/system/resources/previews/001/189/136/original/christmas-decoration-star-png.png"
-val img_base64_preview = "превью изображения, " +
-    "шириной в несколько пикселей. Показывается пока полноразмерное изображение из url не загрузилось"
+val img_base64_preview = "image preview, " +
+    "several-pixels wide image preview. Being shown while the main image from the url has not been loaded"
+
 
 val title = "Get 100% off"
 val title_color = "#ffffff"
@@ -112,8 +113,8 @@ object Token2 {
     val JSONs: List<OfferParams?> = listOf(
             """
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -151,8 +152,8 @@ object Token2 {
             """
     
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -190,8 +191,8 @@ object Token2 {
             """
     
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -229,8 +230,8 @@ object Token2 {
             """
     
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -265,8 +266,8 @@ object Token2 {
             """
     
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -297,8 +298,8 @@ object Token2 {
                 """.trimIndent(),
             """
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -329,8 +330,8 @@ object Token2 {
                 """.trimIndent(),
             """
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -367,8 +368,8 @@ object Token2 {
             """.trimIndent(),
             """
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -403,8 +404,8 @@ object Token2 {
                 }
             """.trimIndent(),
             """ {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -438,8 +439,8 @@ object Token2 {
                     }
             }""".trimIndent(),
             """{
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#d5d9e1",
@@ -473,8 +474,8 @@ object Token2 {
                     }
             }""".trimIndent(),
             """{
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -506,8 +507,8 @@ object Token2 {
                 }
             """.trimIndent(),
             """{
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -535,8 +536,8 @@ object Token2 {
                     }
             }""".trimIndent(),
             """{
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",
@@ -565,8 +566,8 @@ object Token2 {
             }""".trimIndent(),
             """
                 {
-                    "productId": "com.b2s.subscription.oneMonth",
-                    "promotionOfferId": "com.b2s.subscription.onemonth.50off",
+                    "productId": "com.subgrow.subscription.oneMonth",
+                    "promotionOfferId": "com.subgrow.subscription.onemonth.50off",
                     "pushNotificationText": "あなただけの特別割引です！期間限定でサブスクリプション価格がお安くなります。",
                     "screen": {
                         "backgroundColor": "#000000",

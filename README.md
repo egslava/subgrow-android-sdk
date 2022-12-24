@@ -6,22 +6,25 @@ First, you need to register in our site https://www.subgrow.jp
 
 # Demo app
 You can install and test our Demo app in the [Play Store]
-(https://play.google.com/store/apps/details?id=ru.egslava.subgrowandroiddemo) and check how
+(https://play.google.com/store/apps/details?id=jp.subgrow.android.demo) and check how
 the service works, if you have any question, feel
-free to write to us in issues on Github. The [source code](https://github.com/egslava/subgrow-android-demo) is open and can be used as an integration example.
+free to write to us in issues on Github. The [source code](./demo) is open and can be used as an integration example.
 
 # Installation
 Currently, SubGrow SDK can be installed via gradle:
 
 ```groovy
-implementation 'com.github.egslava:subgrow-android-sdk:0.1.0'
+
+implementation 'com.github.SubGrow:SubGrowSDK-Android:0.0.1'
 ```
+
+Where instead of 0.0.1 you can insert an actual release name from [releases](https://github.com/SubGrow/SubGrowSDK-Android/releases) page.
 
 # Integration
 
 1. In main Activity:
 ```kotlin
-B2S.gotPushViaIntent(activity)
+Subgrow.gotPushViaIntent(activity)
 ```
 2. In FCM Service:
 
@@ -30,44 +33,44 @@ B2S.gotPushViaIntent(activity)
      // ...
      override fun onMessageReceived(message: RemoteMessage) {
          super.onMessageReceived(message)
-         B2S.gotPushViaService(message.data)
+         Subgrow.gotPushViaService(message.data)
      }
  }
 ```
 
 3. To receive Google Play subscriptions:
 ```kotlin
-B2S.loadPlaySubscriptions(
+Subgrow.loadPlaySubscriptions(
    app,  // context
    "7ea57fec-ed9d-4fb9-8f24-51947fe25066",  // sdk key
 
    // list of subscriptions id from the Play Store
    arrayOf( 
-       "com.b2s.subscription.oneweek",
-       "com.b2s.subscription.onemonth3",
-       "com.b2s.subscription.threemonth3",
-       "com.b2s.subscription.sixmonth3",
-       "com.b2s.subscription.oneyear4",
+       "oneweek",
+       "onemonth",
+       "threemonth",
+       "sixmonth",
+       "oneyear",
    ))
 ```
 
 and, then, in your `ViewModel`, subscribe:
 
 ```kotlin
-B2S.playSubscriptions.asLiveData()
+Subgrow.playSubscriptions.asLiveData()
 ```
 
 4. To buy a subscription:
 
 ```kotlin
-B2S.buy(activity, token)
+Subgrow.buy(activity, token)
 ```
 
 # How do I return users?
 
 1. In your `UseCase`:
 ```kotlin
-B2S.onOfferReceived.collect { offer -> }
+Subgrow.onOfferReceived.collect { offer -> }
 ```
 
 2. In your navigation:

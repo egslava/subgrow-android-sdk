@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/api/offer/screen"
+  },
+
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "productId": "12345",
+      "promotionOfferId": "An offer id, should be set in app store connect. It's sent to iOS within payment. Afterwords it goes to the bill and being sent to us.",
+      "pushNotificationText": "You've got a personal offer!",
+      "screen": {
+        "backgroundColor": "#111111",
+        "backgroundImage": {
+          "url": "https://static.vecteezy.com/system/resources/previews/002/402/683/original/night-starry-sky-and-pink-clouds-sunrise-free-vector.jpg",
+          "base64": "several-pixels wide image preview. Being shown while the main image from the url has not been loaded"
+        },
+        "image": {
+          "url": "https://static.vecteezy.com/system/resources/previews/001/189/136/original/christmas-decoration-star-png.png",
+          "base64": "several-pixels wide image preview. Being shown while the main image from the url has not been loaded"
+        },
+        "title": {
+          "text": "Get 100% off",
+          "color": "#ffffff"
+        },
+        "subtitle": {
+          "text": "and one more free month.",
+          "color": "#fffffe"
+        },
+        "offer": {
+          "text": "1 month for free. Then ¥10/month",
+          "color": "#fffffd"
+        },
+        "promotion_button": {
+          "text": "Resubscribe",
+          "text_color": "#fffffc",
+          "background_color": "#ff0000"
+        },
+        "lang": "en",
+        "footer": "<a href='http://google.com'>Privacy policy</a>•<a href='http://google.com'>Terms of Service</a>"
+      }
+    },
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}
