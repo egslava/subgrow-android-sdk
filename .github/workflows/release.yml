@@ -20,6 +20,8 @@ jobs:
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
+          SUBGROW_DEMO_APP_ID: ${{ secrets.SUBGROW_DEMO_APP_ID }}
+          GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
         run: |
           chmod +x .github/workflows/scripts/**
           ./.github/workflows/scripts/_1_build.sh
@@ -45,6 +47,8 @@ jobs:
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
+          GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
+          SUBGROW_DEMO_APP_ID: ${{ secrets.SUBGROW_DEMO_APP_ID }}
 
       - name: "github releases (tested)"
         uses: marvinpinto/action-automatic-releases@latest
