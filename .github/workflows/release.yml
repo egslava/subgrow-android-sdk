@@ -32,8 +32,12 @@ jobs:
           prerelease: false
 
       - name: "jitpack tests"
-        run: |
-          ./.github/workflows/scripts/_2_jitpack.sh
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 3
+          max_attempts: 3
+          command: |
+            ./.github/workflows/scripts/_2_jitpack.sh
         env:
           subgrow_sdk_maven_repo: "com.github.${{github.repository.owner}}:${{github.event.repository.name }}:v0.0.${{github.run_id}}.prerelease"
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}

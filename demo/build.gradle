@@ -21,6 +21,7 @@ def store_file_tmp = '../temp/building/bogunov-android-demo.keystore'
 def key = System.getenv().get(key_env)
 def key_password = System.getenv().get(key_password_env)
 def store_password = System.getenv().get(store_password_env)
+def SUBGROW_DEMO_APP_ID = System.getenv().get("SUBGROW_DEMO_APP_ID")
 
 if (key == null || key_password == null || store_password == null) {
     throw new RuntimeException(
@@ -50,7 +51,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "jp.subgrow.android.demo"
+        applicationId "$SUBGROW_DEMO_APP_ID"
         minSdk 28
         targetSdk 32
         versionCode subgrow_version_code
