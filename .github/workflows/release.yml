@@ -44,13 +44,14 @@ jobs:
             ./.github/workflows/scripts/_2_jitpack.sh
         env:
           subgrow_sdk_maven_repo: "com.github.${{github.repository.owner}}:${{github.event.repository.name }}:v0.0.${{github.run_id}}.prerelease"
-          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
-          SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
-          GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
           SUBGROW_DEMO_APP_ID: ${{ secrets.SUBGROW_DEMO_APP_ID }}
+          GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
+          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
+
+          SUBGROW_DEMO_KEY_PASSWORD: ${{ secrets.SUBGROW_DEMO_KEY_PASSWORD }}
 
       - name: "github releases (tested)"
         uses: marvinpinto/action-automatic-releases@latest
