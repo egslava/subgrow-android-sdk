@@ -39,6 +39,7 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 3
+          retry_wait_seconds: 60
           max_attempts: 3
           command: |
             ./.github/workflows/scripts/_2_jitpack.sh
