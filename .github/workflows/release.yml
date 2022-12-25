@@ -22,6 +22,8 @@ jobs:
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
           SUBGROW_DEMO_APP_ID: ${{ secrets.SUBGROW_DEMO_APP_ID }}
           GOOGLE_SERVICES_BASE64: ${{ secrets.GOOGLE_SERVICES_BASE64 }}
+          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
+
         run: |
           chmod +x .github/workflows/scripts/**
           ./.github/workflows/scripts/_1_build.sh
