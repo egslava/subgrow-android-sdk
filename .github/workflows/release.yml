@@ -43,7 +43,7 @@ jobs:
           command: |
             ./.github/workflows/scripts/_2_jitpack.sh
         env:
-          subgrow_sdk_maven_repo: "com.github.${{github.repository_owner}}:${{github.event.repository.name }}:v0.0.${{github.run_id}}.prerelease"
+          subgrow_sdk_maven_repo: "com.github.${{github.repository_owner}}.${{github.event.repository.name }}:sdk:v0.0.${{github.run_id}}.prerelease"
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           SUBGROW_DEMO_KEY_ALIAS: ${{ secrets.SUBGROW_DEMO_KEY_ALIAS }}
