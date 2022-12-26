@@ -27,7 +27,7 @@ if (key == null || key_password == null || store_password == null) {
     // jitpack — just skip
     // jitpack runs ./gradlew publishToMavenLocal and it doesn't
     // have an access to env variables / github secrets
-    throw RuntimeException(
+    throw new RuntimeException(
             "Please, specify " +
                     "$key_env, $key_password_env and " +
                     "$store_password_env environment variables. " +
