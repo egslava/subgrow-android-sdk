@@ -19,31 +19,9 @@ include ':sdk'
 include ':ui_debugger'
 include ':tutorial'
 
-// is created by a pipeline and, then, removed automatically
-def key_env = 'SUBGROW_DEMO_KEY_ALIAS'
-def key_password_env = 'SUBGROW_DEMO_KEY_PASSWORD'
-def store_password_env = 'SUBGROW_DEMO_STORE_PASSWORD'
-def store_file_tmp = '../temp/building/bogunov-android-demo.keystore'
 
-ext {
-    key = System.getenv().get(key_env)
-    key_password = System.getenv().get(key_password_env)
-    store_password = System.getenv().get(store_password_env)
-    SUBGROW_DEMO_APP_ID = System.getenv().get("SUBGROW_DEMO_APP_ID")
-}
-
-if (key == null || key_password == null || store_password == null) {
-    // jitpack — just skip
-    // jitpack runs ./gradlew publishToMavenLocal and it doesn't
-    // have an access to env variables / github secrets
-    logger.warn(
-            "Please, specify " +
-                    "$key_env, $key_password_env and " +
-                    "$store_password_env environment variables. " +
-                    "" +
-                    "Use github secrets for that" +
-                    "(you can't build release locally)"
-    )
-} else {
+if (System.getenv().get("SUBGROW_DEMO_APP_ID") != null) {
     include ':demo'
+} else {
+    logger.warn("Skipping :demo project since SUBGROW_DEMO_APP_ID env var wasn't set")
 }
