@@ -12,42 +12,18 @@ plugins {
 }
 
 
-// is created by a pipeline and, then, removed automatically
-def key_env = 'SUBGROW_DEMO_KEY_ALIAS'
-def key_password_env = 'SUBGROW_DEMO_KEY_PASSWORD'
-def store_password_env = 'SUBGROW_DEMO_STORE_PASSWORD'
-def store_file_tmp = '../temp/building/bogunov-android-demo.keystore'
-
-def key = System.getenv().get(key_env)
-def key_password = System.getenv().get(key_password_env)
-def store_password = System.getenv().get(store_password_env)
-def SUBGROW_DEMO_APP_ID = System.getenv().get("SUBGROW_DEMO_APP_ID")
-
 import com.github.triplet.gradle.androidpublisher.ResolutionStrategy
 
 import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 
-if (key == null || key_password == null || store_password == null) {
-    // jitpack — just skip
-    // jitpack runs ./gradlew publishToMavenLocal and it doesn't
-    // have an access to env variables / github secrets
-    logger.warn(
-            "Please, specify " +
-                    "$key_env, $key_password_env and " +
-                    "$store_password_env environment variables. " +
-                    "" +
-                    "Use github secrets for that" +
-                    "(you can't build release locally)"
-    )
-} else {
-    play {
-        defaultToAppBundles.set(true)
-        resolutionStrategy.set(ResolutionStrategy.AUTO)
-        track.set("internal")
-        releaseStatus.set(ReleaseStatus.COMPLETED)
-    //    userFraction.set(0.5d)
-    //    releaseStatus.set(ReleaseStatus.IN_PROGRESS)
-    }
+
+play {
+    defaultToAppBundles.set(true)
+    resolutionStrategy.set(ResolutionStrategy.AUTO)
+    track.set("internal")
+    releaseStatus.set(ReleaseStatus.COMPLETED)
+//    userFraction.set(0.5d)
+//    releaseStatus.set(ReleaseStatus.IN_PROGRESS)
 }
 
 android {
@@ -142,3 +118,4 @@ dependencies {
 
 
 }
+
