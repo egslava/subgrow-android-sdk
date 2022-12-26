@@ -25,10 +25,12 @@ def key_password_env = 'SUBGROW_DEMO_KEY_PASSWORD'
 def store_password_env = 'SUBGROW_DEMO_STORE_PASSWORD'
 def store_file_tmp = '../temp/building/bogunov-android-demo.keystore'
 
-def key = System.getenv().get(key_env)
-def key_password = System.getenv().get(key_password_env)
-def store_password = System.getenv().get(store_password_env)
-def SUBGROW_DEMO_APP_ID = System.getenv().get("SUBGROW_DEMO_APP_ID")
+ext {
+    key = System.getenv().get(key_env)
+    key_password = System.getenv().get(key_password_env)
+    store_password = System.getenv().get(store_password_env)
+    SUBGROW_DEMO_APP_ID = System.getenv().get("SUBGROW_DEMO_APP_ID")
+}
 
 if (key == null || key_password == null || store_password == null) {
     // jitpack — just skip
