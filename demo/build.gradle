@@ -37,6 +37,7 @@ if (key == null || key_password == null || store_password == null) {
     )
 }
 
+import com.github.triplet.gradle.androidpublisher.ResolutionStrategy
 
 import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 
