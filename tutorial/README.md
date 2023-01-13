@@ -60,7 +60,7 @@ Navigation:
 ```xml
 <fragment
     android:id="@+id/navigation_offer"
-    android:name="jp.subgrow.android.sdk.platform.ui.debug_ui.debug_ui.OfferFragment"
+    android:name="jp.subgrow.android.sdk.platform.ui.offer.OfferFragment"
     android:label="Offer"
     tools:layout="@layout/fragment_offer">
     <argument

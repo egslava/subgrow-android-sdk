@@ -9,7 +9,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "jp.subgrow.android.sdk.tutorial"
+        applicationId System.getenv().get("SUBGROW_TUTORIAL_APP_ID")
         minSdk 28
         targetSdk 32
         versionCode subgrow_version_code

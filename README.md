@@ -77,7 +77,7 @@ Subgrow.onOfferReceived.collect { offer -> }
 ```xml
  <fragment
      android:id="@+id/navigation_offer"
-     android:name="jp.subgrow.android.sdk.platform.ui.debug_ui.debug_ui.OfferFragment"
+     android:name="jp.subgrow.android.sdk.platform.ui.offer.OfferFragment"
      android:label="@string/title_offer"
      tools:layout="@layout/fragment_offer">
    <argument

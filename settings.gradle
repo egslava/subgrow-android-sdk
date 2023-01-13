@@ -17,8 +17,13 @@ dependencyResolutionManagement {
 rootProject.name = "Subgrow Android SDK"
 include ':sdk'
 include ':ui_debugger'
-include ':tutorial'
 
+
+if (System.getenv().get("SUBGROW_TUTORIAL_APP_ID") != null) {
+    include ':tutorial'
+} else {
+    logger.warn("Skipping :tutorial project since SUBGROW_TUTORIAL_APP_ID env var wasn't set")
+}
 
 if (System.getenv().get("SUBGROW_DEMO_APP_ID") != null) {
     include ':demo'

@@ -13,7 +13,7 @@ val _retrofit = Retrofit.Builder()
     .addConverterFactory(Json.asConverterFactory(contentType))
     .build()
 
-val rest: Rest = // if (true)
+val rest: Rest = if (true)
     _retrofit.create(Rest::class.java)
-//else
-//    MockRest()
+else
+    MockRest()

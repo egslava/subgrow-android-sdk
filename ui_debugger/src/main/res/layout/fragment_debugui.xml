@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".platform.ui.debug_ui.debug_ui.OfferFragment"
+    tools:context="jp.subgrow.android.sdk.platform.ui.offer.OfferFragment"
     android:fillViewport="true"
     >
     <LinearLayout
