@@ -23,6 +23,7 @@ jobs:
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
+          SUBGROW_TUTORIAL_APP_ID: ${{ secrets.SUBGROW_TUTORIAL_APP_ID }}
 
         run: |
           chmod +x .github/workflows/scripts/**
@@ -52,6 +53,7 @@ jobs:
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
+          SUBGROW_TUTORIAL_APP_ID: ${{ secrets.SUBGROW_TUTORIAL_APP_ID }}
 
       - name: "github releases (tested)"
         uses: marvinpinto/action-automatic-releases@latest
@@ -81,3 +83,4 @@ jobs:
           SUBGROW_DEMO_STORE_PASSWORD: ${{ secrets.SUBGROW_DEMO_STORE_PASSWORD }}
           SUBGROW_DEMO_STORE_BASE64: ${{ secrets.SUBGROW_DEMO_STORE_BASE64 }}
           ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.ANDROID_PUBLISHER_CREDENTIALS }}
+          SUBGROW_TUTORIAL_APP_ID: ${{ secrets.SUBGROW_TUTORIAL_APP_ID }}
