@@ -12,7 +12,7 @@ data class OfferDescription(
     val duration: String,
     val duration_millis: Long,
     var buttonText: String,
-    val tag: String = "",
+    val productId: String = "",
     var token: String = "",
     var productDetails: ProductDetails? = null,
     var disabled: Boolean = false,

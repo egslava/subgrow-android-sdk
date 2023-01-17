@@ -26,13 +26,6 @@ object SubscriptionsViewModelLogger {
         """.trimIndent().replace("\n", ""))
     }
 
-    fun logIfOfferTagsEmpty(token: String) {
-        error(BILLING_TAG, """
-                offer (token=${token})
-                has empty offerTags
-            """.trimIndent().replace("\n", ""))
-    }
-
     fun logIfOfferPricingEmpty(token: String) {
         error(BILLING_TAG, """
                 offer (token=${token})

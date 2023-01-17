@@ -27,7 +27,7 @@ object Converter {
     fun List<Offer>.toOfferDescriptions(
     ) = map { offer ->
         OFFERS
-            .find { offer.tag == it.tag }!!
+            .find { offer.productId == it.productId }!!
             .copy(purchase_time = offer.purchase_time?:0)
     }
 

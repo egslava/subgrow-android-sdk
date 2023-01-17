@@ -37,7 +37,7 @@ class OfferViewModel(
         offers: List<Offer>,
     ): Boolean {
         return offers.find {
-            it.tag == offer.tag && it.purchase_time != null
+            it.productId == offer.productId && it.purchase_time != null
         } != null
     }
 

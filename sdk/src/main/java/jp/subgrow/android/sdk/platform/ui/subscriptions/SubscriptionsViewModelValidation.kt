@@ -4,7 +4,6 @@ import com.android.billingclient.api.ProductDetails
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelLogger.logIfOfferDetailsEmpty
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelLogger.logIfOfferDetailsNull
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelLogger.logIfOfferPricingEmpty
-import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelLogger.logIfOfferTagsEmpty
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelLogger.logIfProductsEmpty
 
 object SubscriptionsViewModelValidation {
@@ -28,13 +27,6 @@ object SubscriptionsViewModelValidation {
 
         if (offerDetails.isNullOrEmpty()) {
             logIfOfferDetailsEmpty()
-            return false
-        }
-
-        offerDetails.forEach { offer ->
-            if (offer.offerTags.isNotEmpty())
-                return@forEach
-            logIfOfferTagsEmpty(offer.offerToken)
             return false
         }
 

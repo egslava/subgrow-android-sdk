@@ -63,7 +63,7 @@ object SubsUseCase : ISubscriptionUseCase {
     suspend fun wait_offer() =
         SubsRepo.subs_n_offers.collect { (subs, offer) ->
             val sub = subs.find {
-                it.tag == offer.tag && it.purchase_time != null
+                it.productId == offer.productId && it.purchase_time != null
             }
             if (sub != null)
                 return@collect
@@ -90,8 +90,8 @@ object SubsUseCase : ISubscriptionUseCase {
         activity: Activity,
         offer: OfferParams,
     ) {
-        val tag = offer.tag
-        val sub = subscriptions.value.find { it.tag == tag }
+        val productId = offer.productId
+        val sub = subscriptions.value.find { it.productId == productId }
         val token = sub
             ?.productDetails
             ?.subscriptionOfferDetails?.get(0)

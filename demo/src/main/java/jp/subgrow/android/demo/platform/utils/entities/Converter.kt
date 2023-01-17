@@ -17,10 +17,11 @@ object Converter {
         product: ProductDetails,
     ): List<OfferDescription> {
         val offers = product.subscriptionOfferDetails!!
-            .map { offer ->
+            .slice(0..0).map { offer ->
                 val _offer =
                     OffersPlaceholder.OFFERS.find { placeholder ->
-                        placeholder.tag in offer.offerTags
+//                        placeholder.tag in offer.offerTags
+                        placeholder.productId == product.productId
                     }
 
                 _offer!!.token = offer.offerToken

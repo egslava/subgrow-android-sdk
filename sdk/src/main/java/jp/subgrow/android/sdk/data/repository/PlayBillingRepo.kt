@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow as State
 
 data class Offer(
     val productDetails: ProductDetails,
-    val tag: String,
+    val productId: String,
     val price: ProductDetails.PricingPhase,
 
     /** Token for buying */
@@ -81,14 +81,14 @@ object PlayBillingRepo {
         this.products = products
         val offers: List<Offer> = products.map { product: ProductDetails ->
             product.subscriptionOfferDetails!!
-                .map { offer ->
+                .slice(0..0).map { offer ->
                     val is_purchased = purchases.find {
                         product.productId in it.products
                     }
 
                     Offer(
                         product,
-                        offer.offerTags.joinToString(),
+                        product.productId,  // offer.offerTags.joinToString(),
                         price = offer.pricingPhases.pricingPhaseList[0],
                         token = offer.offerToken,
                         purchase_time = is_purchased?.purchaseTime,
