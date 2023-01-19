@@ -1,11 +1,10 @@
 package jp.subgrow.android.sdk.data.repository
 
 import android.content.Context
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import android.util.Log
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import jp.subgrow.android.sdk.platform.datasource.device.DeviceDatasource
+import kotlinx.coroutines.*
 
 object DeviceRepo {
 
@@ -14,7 +13,18 @@ object DeviceRepo {
         MutableStateFlow<Pair<String, String>?>(null)
     val uid = MutableStateFlow<String?>(null)
 
-    fun init(context: Context) = GlobalScope.launch {
+    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+        throwable.printStackTrace()
+        Log.w("coroutineExceptionHandler", "coroutineExceptionHandler")
+        throwable.printStackTrace()
+//        throw throwable
+    }
+
+    fun init(context: Context) = GlobalScope.launch(SupervisorJob() + coroutineExceptionHandler) {
+        supervisedInit(context)
+    }
+
+    private suspend fun CoroutineScope.supervisedInit(context: Context) {
         val app_context = context.applicationContext
         val _android_id = async {
             _data_source.android_id(app_context)
@@ -42,7 +52,6 @@ object DeviceRepo {
             ::Pair
         ).distinctUntilChanged()
             .collect(uid_n_fcm_token)
-
     }
 
 

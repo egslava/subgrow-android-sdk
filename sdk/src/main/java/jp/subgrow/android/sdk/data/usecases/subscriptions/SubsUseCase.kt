@@ -3,6 +3,7 @@ package jp.subgrow.android.sdk.data.usecases.subscriptions
 import android.app.Activity
 import android.content.Context
 import jp.subgrow.android.sdk.data.repository.*
+import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import jp.subgrow.android.sdk.data.usecases.subscriptions.SubscriptionsEffect.GoToOffer
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 import kotlinx.coroutines.CoroutineScope
@@ -11,6 +12,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 interface ISubscriptionUseCase {
     fun load(
@@ -101,5 +103,5 @@ object SubsUseCase : ISubscriptionUseCase {
 
 
     val _coroutine_scope =
-        CoroutineScope(IO + SupervisorJob())
+        CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
 }

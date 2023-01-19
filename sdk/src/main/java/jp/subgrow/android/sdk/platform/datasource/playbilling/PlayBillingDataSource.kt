@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.*
 import com.android.billingclient.api.BillingClient.ProductType.SUBS
+import jp.subgrow.android.sdk.data.repository.DeviceRepo
+import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.combine
@@ -57,8 +59,8 @@ class PlayBillingDataSource(
         )
     }
 
-    internal val _s = CoroutineScope(IO + SupervisorJob())
-    internal val _g = CoroutineScope(IO + SupervisorJob())
+    internal val _s = CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
+    internal val _g = CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
 
     internal val _billing = BillingClient
         .newBuilder(context)

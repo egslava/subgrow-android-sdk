@@ -12,10 +12,14 @@ import jp.subgrow.android.demo.platform.ui.subscriptions.Converter.toOfferDescri
 import jp.subgrow.android.demo.platform.ui.subscriptions.Converter.toSubscriptionItems
 import jp.subgrow.android.demo.platform.utils.Ticker.ticker
 import jp.subgrow.android.sdk.Subgrow
+import jp.subgrow.android.sdk.data.repository.DeviceRepo
+import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import jp.subgrow.android.sdk.data.repository.Offer
 import jp.subgrow.android.sdk.data.usecases.subscriptions.SubscriptionsEffect
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 class HomeViewModel(
     app: Application,
@@ -41,7 +45,7 @@ class HomeViewModel(
                 "oneyear",
             ))
 
-        viewModelScope.launch {
+        viewModelScope.launch(SupervisorJob() + coroutineExceptionHandler) {
             Subgrow.onOfferReceived
                 .collect(effects::postValue)
         }

@@ -1,5 +1,6 @@
 package jp.subgrow.android.sdk.data.repository
 
+import android.util.Log
 import jp.subgrow.android.sdk.Subgrow
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
@@ -9,10 +10,12 @@ import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logOfferScreen
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logToken2
 import jp.subgrow.android.sdk.platform.datasource.rest.rest
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
+import kotlinx.coroutines.delay
 
 object RestRepo {
     lateinit var offers: Flow<OfferParams?>
     val invalidate = MutableStateFlow(true)
+    lateinit var sdk_key: String
 
     fun init(
         uid_n_fcm_token: Flow<Pair<String, String>?>,
@@ -20,6 +23,8 @@ object RestRepo {
     ) {
         if (_is_inited) return
         _is_inited = true
+
+        this.sdk_key = sdk_key
 
         offers = combine(
             uid_n_fcm_token.filterNotNull(),
@@ -32,11 +37,16 @@ object RestRepo {
                     sdk_key = sdk_key,
                     android_id = uid,
                 )
-            }.onEach {
+            }
+            .retry { cause ->
+                Log.e("RestRepo", "retry _post_token: $cause")
+                delay(1000)
+                true
+            }
+            .onEach {
                 invalidate.tryEmit(false)
             }
     }
-
 
     private suspend fun _post_token(
         uid: String,

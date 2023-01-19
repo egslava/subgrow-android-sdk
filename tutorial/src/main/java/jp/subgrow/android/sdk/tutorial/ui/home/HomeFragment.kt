@@ -22,7 +22,7 @@ class HomeFragment : ListFragment() {
             listAdapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_list_item_1,
-                it.map { it.tag }
+                it.map { it.productId }
             )
         }
 
