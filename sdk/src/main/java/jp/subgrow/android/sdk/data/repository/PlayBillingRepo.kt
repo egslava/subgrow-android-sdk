@@ -2,10 +2,12 @@ package jp.subgrow.android.sdk.data.repository
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSource
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelValidation
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.MutableStateFlow as State
 
@@ -50,6 +52,11 @@ object PlayBillingRepo {
                     product_details,
                     purchases,
                 )
+            }
+            .retry {
+                Log.e(PlayBillingRepo.javaClass.name, "retry", it)
+                delay(1000)
+                true
             }
             .filterNotNull()
     }
