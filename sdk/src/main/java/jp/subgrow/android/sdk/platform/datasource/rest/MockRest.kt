@@ -52,4 +52,10 @@ class MockRest: Rest {
             """.trimIndent()
         ))
     }
+
+    override suspend fun onUserDidPurchaseSubscription(body: OnUserDidPurchaseSubscription): Response<Unit> {
+        return Response.success(Unit)
+    }
+
+
 }

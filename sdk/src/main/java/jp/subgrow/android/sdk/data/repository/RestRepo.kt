@@ -1,21 +1,43 @@
 package jp.subgrow.android.sdk.data.repository
 
+import android.app.Activity
 import android.util.Log
+import com.android.billingclient.api.ProductDetails
 import jp.subgrow.android.sdk.Subgrow
+import jp.subgrow.android.sdk.data.usecases.OnUser
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
 import jp.subgrow.android.sdk.platform.datasource.rest.OfferScreenRequest
+import jp.subgrow.android.sdk.platform.datasource.rest.OnUserDidPurchaseSubscription
 import jp.subgrow.android.sdk.platform.datasource.rest.PostTokenRequest
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logOfferScreen
+import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logOnUserDidPurchaseSubscription
 import jp.subgrow.android.sdk.platform.datasource.rest.RestLogger.logToken2
 import jp.subgrow.android.sdk.platform.datasource.rest.rest
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 
 object RestRepo {
     lateinit var offers: Flow<OfferParams?>
     val invalidate = MutableStateFlow(true)
     lateinit var sdk_key: String
+
+    val _scope = CoroutineScope(Dispatchers.IO)
+
+    fun onUserDidPurchaseSubscription(
+        deviceId: String,
+        purchaseToken: String,
+    ){
+        _scope.launch {
+            logOnUserDidPurchaseSubscription(deviceId, purchaseToken)
+            rest.onUserDidPurchaseSubscription(
+                OnUserDidPurchaseSubscription(
+                    deviceId,
+                    purchaseToken,
+                )
+            )
+        }
+    }
 
     fun init(
         uid_n_fcm_token: Flow<Pair<String, String>?>,

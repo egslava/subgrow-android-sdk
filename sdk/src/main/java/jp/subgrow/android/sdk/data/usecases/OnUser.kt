@@ -42,4 +42,8 @@ object OnUser {
         activity: Activity,
         token: String,
     ) = SubsUseCase.buy(activity, token)
+
+    fun didBuySubscription(purchaseToken: String) = SubsUseCase.onUserDidPurchaseSubscription(
+        purchaseToken
+    )
 }

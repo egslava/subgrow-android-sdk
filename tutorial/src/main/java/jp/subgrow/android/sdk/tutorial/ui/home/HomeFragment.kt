@@ -28,7 +28,7 @@ class HomeFragment : ListFragment() {
 
         listView.setOnItemClickListener { _, _, index, l ->
             val subs = homeViewModel.playSubscriptions.value ?: return@setOnItemClickListener
-            Subgrow.buy(requireActivity(), subs[index].token)
+            homeViewModel.buy(requireActivity(), subs[index])
         }
 
         homeViewModel.offers.observe(viewLifecycleOwner) {

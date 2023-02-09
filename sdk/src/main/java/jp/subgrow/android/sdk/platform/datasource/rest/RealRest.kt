@@ -20,6 +20,12 @@ data class OfferScreenRequest(
     val androidId: String,
 )
 
+@Serializable
+data class OnUserDidPurchaseSubscription(
+    val deviceId: String,
+    val purchaseToken: String,
+)
+
 // Base url:
 interface Rest {
     // You have to put 'accept-language' in http headers
@@ -33,4 +39,9 @@ interface Rest {
     suspend fun offerScreen(
         @Body body: OfferScreenRequest,
     ): Response<JsonElement>
+
+    @POST("/purchase-android")
+    suspend fun onUserDidPurchaseSubscription(
+        @Body body: OnUserDidPurchaseSubscription,
+    ): Response<Unit>
 }

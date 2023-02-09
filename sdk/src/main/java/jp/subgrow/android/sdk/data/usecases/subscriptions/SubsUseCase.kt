@@ -12,7 +12,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 
 interface ISubscriptionUseCase {
     fun load(
@@ -99,6 +98,15 @@ object SubsUseCase : ISubscriptionUseCase {
             ?.subscriptionOfferDetails?.get(0)
             ?.offerToken ?: return
         this.buy(activity, token)
+    }
+
+    fun onUserDidPurchaseSubscription(
+        purchaseToken: String
+    ) {
+        RestRepo.onUserDidPurchaseSubscription(
+            DeviceRepo.uid.value!!,
+            purchaseToken
+        )
     }
 
 

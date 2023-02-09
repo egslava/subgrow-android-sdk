@@ -21,4 +21,15 @@ object RestLogger {
             Body: "$body"
         """.trimIndent())
     }
+
+    fun logOnUserDidPurchaseSubscription(
+        deviceId: String,
+        purchasetoken: String
+    ) {
+        debug(_API_TAG, """
+            Sending the notification that the user bought the purchase. \n
+            deviceId: ${deviceId}, \n
+            purchaseToken: ${purchasetoken} \n
+        """.trimIndent())
+    }
 }

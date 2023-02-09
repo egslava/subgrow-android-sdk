@@ -3,9 +3,11 @@ package jp.subgrow.android.sdk.platform.datasource.playbilling
 import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.*
+import com.android.billingclient.api.BillingClient.BillingResponseCode.OK
 import com.android.billingclient.api.BillingClient.ProductType.SUBS
 import jp.subgrow.android.sdk.data.repository.DeviceRepo
 import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
+import jp.subgrow.android.sdk.data.usecases.OnUser
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.combine
@@ -65,7 +67,8 @@ class PlayBillingDataSource(
     internal val _billing = BillingClient
         .newBuilder(context)
         .setListener(this)
-        .enablePendingPurchases()
+        .enablePendingPurchases()   // allows the user to make a purchase
+                                    // without immediately charging their account.
         .build()
 
 
@@ -190,6 +193,12 @@ class PlayBillingDataSource(
             purchases
         )
         this.purchases.tryEmit(purchases)
+
+        if (billing_result.responseCode == OK && purchases != null) {
+            purchases.lastOrNull()?.purchaseToken?.also { justPurchasedToken ->
+                OnUser.didBuySubscription(justPurchasedToken)
+            }
+        }
     }
 }
 

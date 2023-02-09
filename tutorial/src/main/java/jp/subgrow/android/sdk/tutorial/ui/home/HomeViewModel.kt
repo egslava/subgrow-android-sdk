@@ -1,6 +1,8 @@
 package jp.subgrow.android.sdk.tutorial.ui.home
 
+import android.app.Activity
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,6 +18,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
 class HomeViewModel(app: Application) : AndroidViewModel(app) {
+    fun buy(activity: Activity, offer: Offer) {
+        Subgrow.buy(activity, offer.token)
+    }
 
     val playSubscriptions by lazy { Subgrow.playSubscriptions.asLiveData() }
     val offers = LiveEvent<SubscriptionsEffect>()
