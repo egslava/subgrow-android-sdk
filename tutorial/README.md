@@ -1,4 +1,4 @@
-# subgrow Androidバージョンのインテグレーション (ENGLISH BELOW)
+# SubGrow Androidバージョンのインテグレーション (ENGLISH BELOW)
  
 [Subgrow SDK](https://www.subgrow.jp)のインテグレーション方法には５つのファイルが含まれます。
 インテグレーションを簡潔にするため、プロジェクトは複製する方法をとっています。 
