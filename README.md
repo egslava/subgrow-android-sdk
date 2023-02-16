@@ -1,5 +1,5 @@
 
-subgrow SDKはAndroidとiOSアプリのアプリ内課金に組み込むフレームワークです。(ENGLISH BELOW)
+SubGrow SDKはAndroidとiOSアプリのアプリ内課金に組み込むフレームワークです。(ENGLISH BELOW)
 
 まずはhttps://www.subgrow.jpでユーザー登録をお願いします。
 
