@@ -40,7 +40,7 @@ interface Rest {
         @Body body: OfferScreenRequest,
     ): Response<JsonElement>
 
-    @POST("/purchase-android")
+    @POST("purchase-android")
     suspend fun onUserDidPurchaseSubscription(
         @Body body: OnUserDidPurchaseSubscription,
     ): Response<Unit>

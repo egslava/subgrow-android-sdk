@@ -43,6 +43,11 @@ class HomeViewModel(
                 "threemonth",
                 "sixmonth",
                 "oneyear",
+//                "com.b2s.subscription.freemonth",
+//                "com.b2s.subscription.sixmonth",
+//                "com.b2s.subscription.oneYear",
+//                "com.b2s.subscription.oneMonth",
+//                "com.b2s.subscription.threemonth3",
             ))
 
         viewModelScope.launch(SupervisorJob() + coroutineExceptionHandler) {

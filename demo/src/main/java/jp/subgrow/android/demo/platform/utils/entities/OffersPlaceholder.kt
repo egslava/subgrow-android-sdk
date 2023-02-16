@@ -52,6 +52,55 @@ object OffersPlaceholder {
             "1000円",
             "oneyear"
         ),
+
+
+        // synonyms, often used within refactor:
+        OfferDescription(
+            1,
+            "Free month",
+            "Will last 5 mins",
+            5 * MINUTES,
+            "Start",
+            "com.b2s.subscription.freemonth",
+        ),
+        OfferDescription(
+            2,
+            "One month",
+            "Will last 5 mins",
+            5 * MINUTES,
+            "Start",
+            "com.b2s.subscription.oneMonth"
+        ),
+        OfferDescription(
+            3,
+            "3 months",
+            "10 mins",
+            10 * MINUTES,
+            "300円",
+            "com.b2s.subscription.threemonth"
+        ),
+        OfferDescription(
+            3,
+            "3 months",
+            "10 mins",
+            10 * MINUTES,
+            "300円",
+            "com.b2s.subscription.threemonth3"
+        ),
+        OfferDescription(4,
+            "6 months",
+            "15 mins",
+            15 * MINUTES,
+            "600円",
+            "com.b2s.subscription.sixmonth"
+        ),
+        OfferDescription(5,
+            "One year",
+            "30 mins",
+            30 * MINUTES,
+            "1000円",
+            "com.b2s.subscription.oneYear"
+        ),
     )
 }
 

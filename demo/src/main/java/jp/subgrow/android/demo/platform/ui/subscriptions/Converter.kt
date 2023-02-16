@@ -3,6 +3,7 @@ package jp.subgrow.android.demo.platform.ui.subscriptions
 import OfferDescription
 import jp.subgrow.android.demo.platform.utils.entities.OffersPlaceholder.OFFERS
 import jp.subgrow.android.sdk.data.repository.Offer
+import java.lang.NullPointerException
 
 object Converter {
     /** "00:09" until offer's expiration */
@@ -27,7 +28,13 @@ object Converter {
     fun List<Offer>.toOfferDescriptions(
     ) = map { offer ->
         OFFERS
-            .find { offer.productId == it.productId }!!
+            .find { offer.productId == it.productId }
+            .let {
+                if (it == null) throw NullPointerException(
+                    "cannot find offer with productId: ${offer.productId}"
+                )
+                it!!
+            }
             .copy(purchase_time = offer.purchase_time?:0)
     }
 

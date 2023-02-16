@@ -29,13 +29,13 @@ object RestRepo {
         purchaseToken: String,
     ){
         _scope.launch {
-            logOnUserDidPurchaseSubscription(deviceId, purchaseToken)
             rest.onUserDidPurchaseSubscription(
                 OnUserDidPurchaseSubscription(
                     deviceId,
                     purchaseToken,
                 )
             )
+            logOnUserDidPurchaseSubscription(deviceId, purchaseToken)
         }
     }
 
