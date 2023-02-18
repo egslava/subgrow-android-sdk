@@ -6,6 +6,7 @@ import android.util.Log
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSource
+import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSource.Companion.sortedByPrice
 import jp.subgrow.android.sdk.platform.ui.subscriptions.SubscriptionsViewModelValidation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -88,7 +89,9 @@ object PlayBillingRepo {
         this.products = products
         val offers: List<Offer> = products.map { product: ProductDetails ->
             product.subscriptionOfferDetails!!
-                .slice(0..0).map { offer ->
+                .sortedByPrice()
+                .slice(0..0)
+                .map { offer ->
                     val is_purchased = purchases.find {
                         product.productId in it.products
                     }

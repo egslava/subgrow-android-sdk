@@ -5,6 +5,7 @@ import android.content.Context
 import com.android.billingclient.api.*
 import com.android.billingclient.api.BillingClient.BillingResponseCode.OK
 import com.android.billingclient.api.BillingClient.ProductType.SUBS
+import com.android.billingclient.api.ProductDetails.SubscriptionOfferDetails
 import jp.subgrow.android.sdk.data.repository.DeviceRepo
 import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import jp.subgrow.android.sdk.data.usecases.OnUser
@@ -17,12 +18,21 @@ import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.flow.MutableStateFlow as State
 import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSourceLogger as logger
 
-
 class PlayBillingDataSource(
     context: Context,
     vararg products: String,
 ) :
     PurchasesUpdatedListener {
+
+    companion object {
+        fun List<SubscriptionOfferDetails>.sortedByPrice(): List<SubscriptionOfferDetails> {
+            return this
+//            return this.sortedBy {
+//                it.pricingPhases.pricingPhaseList.get(0)?.priceAmountMicros ?: Long.MAX_VALUE
+//            }
+        }
+    }
+
     val TAG = javaClass.name
 
     val product_details =

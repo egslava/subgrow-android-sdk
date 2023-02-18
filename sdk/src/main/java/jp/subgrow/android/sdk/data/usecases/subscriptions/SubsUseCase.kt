@@ -5,6 +5,7 @@ import android.content.Context
 import jp.subgrow.android.sdk.data.repository.*
 import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import jp.subgrow.android.sdk.data.usecases.subscriptions.SubscriptionsEffect.GoToOffer
+import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSource.Companion.sortedByPrice
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -95,7 +96,7 @@ object SubsUseCase : ISubscriptionUseCase {
         val sub = subscriptions.value.find { it.productId == productId }
         val token = sub
             ?.productDetails
-            ?.subscriptionOfferDetails?.get(0)
+            ?.subscriptionOfferDetails?.sortedByPrice()?.get(0)
             ?.offerToken ?: return
         this.buy(activity, token)
     }

@@ -35,7 +35,10 @@ object Converter {
                 )
                 it!!
             }
-            .copy(purchase_time = offer.purchase_time?:0)
+            .copy(
+                purchase_time = offer.purchase_time?:0,
+                token = offer.token,
+            )
     }
 
     fun List<OfferDescription>.toSubscriptionItems(): List<SubscriptionItem> {
