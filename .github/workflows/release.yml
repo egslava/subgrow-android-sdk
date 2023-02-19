@@ -63,13 +63,13 @@ jobs:
           prerelease: false
           files: |
             ./tutorial/build/outputs/bundle/release/tutorial-release.aab
-            ./tutorial/build/outputs/bundle/release/tutorial-debug.aab
+            ./tutorial/build/outputs/bundle/debug/tutorial-debug.aab
             ./tutorial/build/outputs/apk/release/tutorial-release.apk
             ./tutorial/build/outputs/apk/debug/tutorial-debug.apk
-            ./demo/build/outputs/bundle/debug/demo-release.aab
+            ./demo/build/outputs/bundle/release/demo-release.aab
             ./demo/build/outputs/bundle/debug/demo-debug.aab
             ./demo/build/outputs/apk/debug/demo-debug.apk
-            ./demo/build/outputs/apk/debug/demo-release.apk
+            ./demo/build/outputs/apk/relase/demo-release.apk
 
 
       - name: "publish to PlayStore"
