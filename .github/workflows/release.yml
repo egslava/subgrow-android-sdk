@@ -64,7 +64,7 @@ jobs:
           files: |
             ./tutorial/build/outputs/bundle/release/tutorial-release.aab
             ./tutorial/build/outputs/bundle/release/tutorial-debug.aab
-            ./dtutorialemo/build/outputs/apk/release/tutorial-release.apk
+            ./tutorial/build/outputs/apk/release/tutorial-release.apk
             ./tutorial/build/outputs/apk/debug/tutorial-debug.apk
             ./demo/build/outputs/bundle/debug/demo-release.aab
             ./demo/build/outputs/bundle/debug/demo-debug.aab
