@@ -62,10 +62,10 @@ jobs:
           automatic_release_tag: "v0.0.${{github.run_id}}"
           prerelease: false
           files: |
-            ./demo/build/outputs/bundle/release/tutorial-release.aab
-            ./demo/build/outputs/bundle/release/tutorial-debug.aab
-            ./demo/build/outputs/apk/release/tutorial-release.apk
-            ./demo/build/outputs/apk/debug/tutorial-debug.apk
+            ./tutorial/build/outputs/bundle/release/tutorial-release.aab
+            ./tutorial/build/outputs/bundle/release/tutorial-debug.aab
+            ./dtutorialemo/build/outputs/apk/release/tutorial-release.apk
+            ./tutorial/build/outputs/apk/debug/tutorial-debug.apk
             ./demo/build/outputs/bundle/debug/demo-release.aab
             ./demo/build/outputs/bundle/debug/demo-debug.aab
             ./demo/build/outputs/apk/debug/demo-debug.apk
