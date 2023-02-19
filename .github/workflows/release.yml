@@ -69,7 +69,7 @@ jobs:
             ./demo/build/outputs/bundle/release/demo-release.aab
             ./demo/build/outputs/bundle/debug/demo-debug.aab
             ./demo/build/outputs/apk/debug/demo-debug.apk
-            ./demo/build/outputs/apk/relase/demo-release.apk
+            ./demo/build/outputs/apk/release/demo-release.apk
 
 
       - name: "publish to PlayStore"
