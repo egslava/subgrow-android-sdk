@@ -62,14 +62,14 @@ jobs:
           automatic_release_tag: "v0.0.${{github.run_id}}"
           prerelease: false
           files: |
-            ./app/build/outputs/bundle/release/tutorial-release.aab
-            ./app/build/outputs/bundle/release/tutorial-debug.aab
-            ./app/build/outputs/apk/release/tutorial-release.apk
-            ./app/build/outputs/apk/debug/tutorial-debug.apk
-            ./app/build/outputs/bundle/debug/demo-release.aab
-            ./app/build/outputs/bundle/debug/demo-debug.aab
-            ./app/build/outputs/apk/debug/demo-debug.apk
-            ./app/build/outputs/apk/debug/demo-release.apk
+            ./demo/build/outputs/bundle/release/tutorial-release.aab
+            ./demo/build/outputs/bundle/release/tutorial-debug.aab
+            ./demo/build/outputs/apk/release/tutorial-release.apk
+            ./demo/build/outputs/apk/debug/tutorial-debug.apk
+            ./demo/build/outputs/bundle/debug/demo-release.aab
+            ./demo/build/outputs/bundle/debug/demo-debug.aab
+            ./demo/build/outputs/apk/debug/demo-debug.apk
+            ./demo/build/outputs/apk/debug/demo-release.apk
 
 
       - name: "publish to PlayStore"
