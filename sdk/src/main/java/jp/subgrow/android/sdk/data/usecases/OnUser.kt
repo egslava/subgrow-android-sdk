@@ -36,7 +36,7 @@ object OnUser {
     fun hitAcceptOffer(
         activity: Activity,
         offer: OfferParams,
-    ) = SubsUseCase.buy(activity, offer)
+    ) = SubsUseCase.buy_offer(activity, offer)
 
     fun hitBuyOnOfferList(
         activity: Activity,

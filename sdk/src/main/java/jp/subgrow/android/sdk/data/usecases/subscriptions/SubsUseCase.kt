@@ -65,7 +65,8 @@ object SubsUseCase : ISubscriptionUseCase {
     suspend fun wait_offer() =
         SubsRepo.subs_n_offers.collect { (subs, offer) ->
             val sub = subs.find {
-                it.productId == offer.productId &&
+                (it.productId == offer.productId ||
+                it.productId == offer.promotionOfferId) &&
                         it.purchase_time != null &&
                         (it.purchase_time + 30000 > System.currentTimeMillis())
             }
@@ -95,6 +96,19 @@ object SubsUseCase : ISubscriptionUseCase {
         offer: OfferParams,
     ) {
         val productId = offer.productId
+        val sub = subscriptions.value.find { it.productId == productId }
+        val token = sub
+            ?.productDetails
+            ?.subscriptionOfferDetails?.sortedByPrice()?.get(0)
+            ?.offerToken ?: return
+        this.buy(activity, token)
+    }
+
+    fun buy_offer(
+        activity: Activity,
+        offer: OfferParams,
+    ) {
+        val productId = offer.promotionOfferId
         val sub = subscriptions.value.find { it.productId == productId }
         val token = sub
             ?.productDetails

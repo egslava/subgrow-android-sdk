@@ -3,6 +3,7 @@ package jp.subgrow.android.demo.platform.ui.subscriptions
 import OfferDescription
 import jp.subgrow.android.demo.platform.utils.entities.OffersPlaceholder.OFFERS
 import jp.subgrow.android.sdk.data.repository.Offer
+import jp.subgrow.android.sdk.platform.Logger
 import java.lang.NullPointerException
 
 object Converter {
@@ -29,17 +30,19 @@ object Converter {
     ) = map { offer ->
         OFFERS
             .find { offer.productId == it.productId }
-            .let {
-                if (it == null) throw NullPointerException(
-                    "cannot find offer with productId: ${offer.productId}"
-                )
-                it!!
+            .also {
+                if (it == null) {
+                    Logger.error(
+                        "ERROR",
+                        "cannot find offer with productId: ${offer.productId}"
+                    )
+                }
             }
-            .copy(
+            ?.copy(
                 purchase_time = offer.purchase_time?:0,
                 token = offer.token,
             )
-    }
+    }.filterNotNull()
 
     fun List<OfferDescription>.toSubscriptionItems(): List<SubscriptionItem> {
         val subscriptions = this

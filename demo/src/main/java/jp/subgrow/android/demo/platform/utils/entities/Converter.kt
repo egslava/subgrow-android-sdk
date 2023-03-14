@@ -21,6 +21,7 @@ object Converter {
             .sortedByPrice()
             .slice(0..0)
             .map { offer ->
+
                 val _offer =
                     OffersPlaceholder.OFFERS.find { placeholder ->
 //                        placeholder.tag in offer.offerTags

@@ -32,7 +32,7 @@ object OffersPlaceholder {
             "1ヶ月プラン",
             "5分間継続",
             5 * MINUTES,
-            "Start",
+            "100円",
             "onemonth"
         ),
         OfferDescription(
@@ -73,7 +73,7 @@ object OffersPlaceholder {
             "1ヶ月プラン",
             "5分間継続",
             5 * MINUTES,
-            "Start",
+            "100円",
             "com.subgrow.subscription.onemonth",
         ),
         OfferDescription(
@@ -114,8 +114,25 @@ object OffersPlaceholder {
             "1ヶ月プラン",
             "5分間継続",
             5 * MINUTES,
-            "Start",
+            "100円",
             "com.b2s.subscription.oneMonth"
+        ),
+
+        OfferDescription(
+            20,
+            "hidden",  // filtered out by title
+            "5分間継続",
+            5 * MINUTES,
+            "50円",
+            "com.subgrow.subscription.onemonth.50off"
+        ),
+        OfferDescription(
+            21,
+            "hidden",  // filtered out by title
+            "5分間継続",
+            5 * MINUTES,
+            "50円",
+            "com.b2s.subscription.sixmonth.25off"
         ),
         OfferDescription(
             3,

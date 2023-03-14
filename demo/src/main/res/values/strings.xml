@@ -1,9 +1,10 @@
 ﻿<resources>
     <string name="app_name">Subgrow Android Demo</string>
-    <string name="title_subscriptions" translatable="false">Subscriptions</string>
-    <string name="title_code" translatable="false">Personal code</string>
-    <string name="title_debug_ui" translatable="false">Debug UI
-    </string>
+<!--    <string name="title_subscriptions" translatable="false">Subscriptions</string>-->
+    <string name="title_subscriptions" translatable="false">ブスクリプション</string>
+<!--    <string name="title_code" translatable="false">Personal code</string>-->
+    <string name="title_code" translatable="false">個人コード</string>
+    <string name="title_debug_ui" translatable="false">Debug UI</string>
     <string name="title_offer" translatable="false">
         Offer
     </string>

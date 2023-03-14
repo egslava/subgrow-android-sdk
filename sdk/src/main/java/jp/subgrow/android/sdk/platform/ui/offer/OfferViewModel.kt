@@ -37,7 +37,8 @@ class OfferViewModel(
         offers: List<Offer>,
     ): Boolean {
         val offer = offers.find {
-            it.productId == offer.productId
+            (it.productId == offer.productId ||
+                    it.productId == offer.promotionOfferId)
                     && it.purchase_time != null
                     && (it.purchase_time + 30000 > System.currentTimeMillis())
         }
