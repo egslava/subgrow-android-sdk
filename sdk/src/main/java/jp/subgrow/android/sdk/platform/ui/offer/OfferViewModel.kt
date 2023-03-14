@@ -36,9 +36,12 @@ class OfferViewModel(
         offer: OfferParams,
         offers: List<Offer>,
     ): Boolean {
-        return offers.find {
-            it.productId == offer.productId && it.purchase_time != null
-        } != null
+        val offer = offers.find {
+            it.productId == offer.productId
+                    && it.purchase_time != null
+                    && (it.purchase_time + 30000 > System.currentTimeMillis())
+        }
+        return offer != null
     }
 
     fun set_offer(offer: OfferParams) {

@@ -65,9 +65,11 @@ object SubsUseCase : ISubscriptionUseCase {
     suspend fun wait_offer() =
         SubsRepo.subs_n_offers.collect { (subs, offer) ->
             val sub = subs.find {
-                it.productId == offer.productId && it.purchase_time != null
+                it.productId == offer.productId &&
+                        it.purchase_time != null &&
+                        (it.purchase_time + 30000 > System.currentTimeMillis())
             }
-            if (sub != null)
+            if (sub != null)  // is this it?
                 return@collect
 
             effects.emit(GoToOffer(offer))
