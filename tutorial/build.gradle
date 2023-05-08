@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId System.getenv().get("SUBGROW_TUTORIAL_APP_ID")
-        minSdk 28
+        minSdk 21
         targetSdk 32
         versionCode subgrow_version_code
         versionName subgrow_version_name
