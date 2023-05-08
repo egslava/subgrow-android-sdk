@@ -52,6 +52,7 @@ class HomeViewModel(
 
                 "com.subgrow.subscription.freemonth",
                 "com.subgrow.subscription.onemonth",
+                "com.subgrow.subscription.onemonth.50off1",
                 "com.subgrow.subscription.onemonth.50off",
                 "com.subgrow.subscription.threemonth",
                 "com.subgrow.subscription.sixmonth",
@@ -71,7 +72,7 @@ class HomeViewModel(
             subscriptions
                 .toOfferDescriptions()
                 .toSubscriptionItems()
-                .filter { it.title != "hidden" }
+                .filter { "hidden" !in it.title }
         }.asLiveData()
     }
 

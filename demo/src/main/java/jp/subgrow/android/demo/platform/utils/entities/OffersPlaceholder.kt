@@ -120,15 +120,23 @@ object OffersPlaceholder {
 
         OfferDescription(
             20,
-            "hidden",  // filtered out by title
+            "hidden1",  // filtered out by title
             "5分間継続",
             5 * MINUTES,
             "50円",
             "com.subgrow.subscription.onemonth.50off"
         ),
         OfferDescription(
+            22,
+            "hidden2",  // filtered out by title
+            "5分間継続",
+            5 * MINUTES,
+            "50円",
+            "com.subgrow.subscription.onemonth.50off1"
+        ),
+        OfferDescription(
             21,
-            "hidden",  // filtered out by title
+            "hidden3",  // filtered out by title
             "5分間継続",
             5 * MINUTES,
             "50円",
