@@ -3,10 +3,21 @@ package jp.subgrow.android.sdk.data.repository
 import android.graphics.Color
 import org.json.JSONObject
 import jp.subgrow.android.sdk.platform.ui.offer.OfferParams
+import org.json.JSONArray
 
 object Token2Parser {
+    fun parseAll(token2: String): List<OfferParams?> {
+        val result = mutableListOf<OfferParams?>()
+        val jsonArray = JSONArray(token2)
+        for (idx in 0 until jsonArray.length()) {
+            result.add(parse(jsonArray.getJSONObject(idx)))
+        }
+        return result
+    }
     fun parse(token2: String): OfferParams? {
-        val json = JSONObject(token2)
+        return parse(JSONObject(token2))
+    }
+    fun parse(json: JSONObject): OfferParams? {
 
         if (json.optString("errors").isNotBlank() ||
             json.optString("error").isNotBlank()

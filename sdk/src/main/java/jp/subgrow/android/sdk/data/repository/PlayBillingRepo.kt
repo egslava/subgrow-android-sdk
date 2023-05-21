@@ -25,7 +25,7 @@ data class Offer(
 )
 
 object PlayBillingRepo {
-    var _is_inited = false
+    private var _is_inited = false
 
     lateinit var is_loading: State<Boolean>
     lateinit var subscriptions: Flow<List<Offer>>

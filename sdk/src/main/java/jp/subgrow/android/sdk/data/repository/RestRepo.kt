@@ -20,7 +20,7 @@ import kotlinx.coroutines.*
 object RestRepo {
     lateinit var offers: Flow<OfferParams?>
     val invalidate = MutableStateFlow(true)
-    lateinit var sdk_key: String
+    private lateinit var sdk_key: String
 
     val _scope = CoroutineScope(Dispatchers.IO)
 

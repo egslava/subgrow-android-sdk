@@ -2,21 +2,37 @@ package jp.subgrow.android.sdk.platform.datasource.playbilling
 
 import android.app.Activity
 import android.content.Context
-import com.android.billingclient.api.*
+import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode.OK
 import com.android.billingclient.api.BillingClient.ProductType.SUBS
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetails.SubscriptionOfferDetails
-import jp.subgrow.android.sdk.data.repository.DeviceRepo
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.PurchaseHistoryRecord
+import com.android.billingclient.api.PurchasesUpdatedListener
+import com.android.billingclient.api.QueryPurchaseHistoryParams
+import com.android.billingclient.api.QueryPurchasesParams
+import com.android.billingclient.api.queryPurchaseHistory
+import com.android.billingclient.api.queryPurchasesAsync
 import jp.subgrow.android.sdk.data.repository.DeviceRepo.coroutineExceptionHandler
 import jp.subgrow.android.sdk.data.usecases.OnUser
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.coroutineContext
-import kotlinx.coroutines.flow.MutableStateFlow as State
+import kotlin.coroutines.suspendCoroutine
 import jp.subgrow.android.sdk.platform.datasource.playbilling.PlayBillingDataSourceLogger as logger
+import kotlinx.coroutines.flow.MutableStateFlow as State
 
 class PlayBillingDataSource(
     context: Context,
@@ -50,35 +66,19 @@ class PlayBillingDataSource(
         product: ProductDetails,
     ) {
         // An activity reference from which the billing flow will be launched.
-        val productDetailsParamsList = listOf(
-            BillingFlowParams
-                .ProductDetailsParams
-                .newBuilder()
-                .setProductDetails(product)
-                .setOfferToken(token)
-                .build()
-        )
-
-        val billingFlowParams = BillingFlowParams
-            .newBuilder()
-            .setProductDetailsParamsList(
-                productDetailsParamsList
-            ).build()
-
-        _billing.launchBillingFlow(
-            activity,
-            billingFlowParams
-        )
+        buy2(activity, token, product, _billing)
     }
 
-    internal val _s = CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
-    internal val _g = CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
+    internal val _s =
+        CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
+    internal val _g =
+        CoroutineScope(IO + SupervisorJob() + coroutineExceptionHandler)
 
     internal val _billing = BillingClient
         .newBuilder(context)
         .setListener(this)
         .enablePendingPurchases()   // allows the user to make a purchase
-                                    // without immediately charging their account.
+        // without immediately charging their account.
         .build()
 
 
@@ -102,69 +102,38 @@ class PlayBillingDataSource(
 
     private suspend fun _query_purchases_history(
     ): List<PurchaseHistoryRecord>? {
-        //
-        val params = QueryPurchaseHistoryParams
-            .newBuilder()
-            .setProductType(SUBS)
-            .build()
-        val (response, history) = _billing
-            .queryPurchaseHistory(params)
-        logger.logPurchasesHistory(response, history)
-
-        return history
+        return query_purchases_history(_billing)
     }
 
     private suspend fun _query_product_details(
         vararg product_ids: String,
     ): List<ProductDetails>? {
-        val params = QueryProductDetailsParams
-            .newBuilder()
-            .setProductList(product_ids.map { product_id ->
-                QueryProductDetailsParams
-                    .Product
-                    .newBuilder()
-                    .setProductId(product_id)
-                    .setProductType(SUBS)
-                    .build()
-            })
-            .build()
-        val (result, products) = _billing
-            .queryProductDetails(params)
-        logger.logProductDetails(result, products)
-        return products
+        return query_product_details(
+            _billing,
+            *product_ids
+        )
     }
 
     suspend fun _query_product_details_all(
         vararg product_ids: String,
-    ): List<ProductDetails> =
-        withContext(coroutineContext) {
-            val products = product_ids
-                .map { product_id ->
-                    async {
-                        val res = _query_product_details(
-                            product_id)
-                        print(res)
-                        return@async res
-                    }
+    ): List<ProductDetails> = coroutineScope {
+        val products = product_ids
+            .map { product_id ->
+                async {
+                    _query_product_details(
+                        product_id
+                    )
                 }
-                .map { it.await() }
-                .flatMap { it ?: listOf() }
-            return@withContext products
-        }
+            }
+            .map { it.await() }
+            .flatMap { it ?: listOf() }
+        return@coroutineScope products
+    }
 
     private suspend fun _query_purchases(
 
     ): List<Purchase> {
-        val params = QueryPurchasesParams
-            .newBuilder()
-            .setProductType(SUBS)
-            .build()
-        val purchases = _billing
-            .queryPurchasesAsync(params)
-        logger.logPurchases(purchases)
-
-        val (_, list) = purchases
-        return list
+        return query_purchases(_billing)
     }
 
     suspend fun _on_refresh(vararg products: String) {
@@ -206,7 +175,9 @@ class PlayBillingDataSource(
 
         if (billing_result.responseCode == OK && purchases != null) {
             purchases.lastOrNull()?.purchaseToken?.also { justPurchasedToken ->
-                OnUser.didBuySubscription(justPurchasedToken)
+                OnUser.didBuySubscription(
+                    justPurchasedToken
+                )
             }
         }
     }
