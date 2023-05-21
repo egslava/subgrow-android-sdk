@@ -1,7 +1,8 @@
 package jp.subgrow.android.sdk.platform.datasource.firebase
 
 import com.google.firebase.messaging.FirebaseMessaging
-import jp.subgrow.android.sdk.platform.datasource.device.DeviceDatasourceLogger.logPushToken
+import jp.subgrow.android.sdk.platform.Logger
+import jp.subgrow.android.sdk.platform.datasource.device._ACCOUNT_TAG
 import kotlinx.coroutines.tasks.await
 
 suspend fun fcm_token(): String {
@@ -9,6 +10,13 @@ suspend fun fcm_token(): String {
         .getInstance()
         .token
         .await()
-    logPushToken(result)
+    _logFcmToken(result)
     return result
+}
+
+private fun _logFcmToken(token: String) {
+    Logger.debug(
+        _ACCOUNT_TAG,
+        "Obtained Firebase Token: $token"
+    )
 }
